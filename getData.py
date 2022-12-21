@@ -32,7 +32,7 @@ class Ball():
         return
 
 
-def scrape(src, dict={'no': 0, '1': 1, '2': 2, '3': 3, 'FOUR': 4, 'SIX': 6}):
+def scrape(src, dict={'no': 0, '1': 1, '2': 2, '3': 3, 'FOUR': 4, 'SIX': 6, 'OUT': -1}):
     req = requests.get(src).text
     soup = BeautifulSoup(req, 'html.parser')
     balls = soup.find_all('div', class_="ds-text-tight-m ds-font-regular ds-flex ds-px-3 ds-py-2 lg:ds-px-4 lg:ds-py-[10px] ds-items-start ds-select-none lg:ds-select-auto")
