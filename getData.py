@@ -16,7 +16,11 @@ class Ball():
             splitString = self.ballDesc.split(' to ')
             self.bowler = splitString[0]
             self.batsman = splitString[1].split(',')[0]
-            self.runsScored = dict[splitString[1].split(' ')[1]]
+            self.runsScored = 0
+            if '(no ball)' in splitString[1]:
+                self.runsScored += 1
+            else:
+                self.runsScored += dict[splitString[1].split(' ')[1]]
             del self.ballDesc
             return
 
@@ -32,16 +36,11 @@ class Ball():
         return
 
 
-def scrape(src, dict={'no': 0, '1': 1, '2': 2, '3': 3, 'FOUR': 4, 'SIX': 6, 'OUT': -1}):
-    req = requests.get(src).text
-    soup = BeautifulSoup(req, 'html.parser')
-    balls = soup.find_all('div', class_="ds-text-tight-m ds-font-regular ds-flex ds-px-3 ds-py-2 lg:ds-px-4 lg:ds-py-[10px] ds-items-start ds-select-none lg:ds-select-auto")
+def group(n, p, d, dict={'no': 0, '1': 1, '2': 2, '3': 3, 'FOUR': 4, 'SIX': 6, 'OUT': -1}):
     deliveries = []
-    for ball in balls:
-        desc = ball.find('div', class_="ds-leading-none ds-mb-0.5").text
-        num = ball.find('span', class_="ds-text-tight-s ds-font-regular ds-mb-1 lg:ds-mb-0 lg:ds-mr-3 ds-block ds-text-center").text
-        expl = ball.find('p', class_="ci-html-content").text
-        delivery = Ball(num, desc, expl)
+    for i in range(len(n)):
+        delivery = Ball(n[i], p[i], d[i])
+        print(delivery)
         delivery.sortBall(dict)
         deliveries.append(delivery)
     return np.asarray(deliveries)
