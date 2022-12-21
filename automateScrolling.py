@@ -1,9 +1,7 @@
 from getData import group
 from selenium import webdriver
-import numpy as np
 from selenium.webdriver.common.by import By
 import time
-
 
 
 def scroller(path):
@@ -36,11 +34,16 @@ def scroller(path):
 
 
 
-d, p, des = scroller('https://www.espncricinfo.com/series/england-in-pakistan-2022-23-1330866/pakistan-vs-england-3rd-test-1330873/ball-by-ball-commentary')
+# d, p, des = scroller('https://www.espncricinfo.com/series/england-in-pakistan-2022-23-1330866/pakistan-vs-england-3rd-test-1330873/ball-by-ball-commentary')
 
-arrs = group(d, p, des)
+# arrs = group(d, p, des)
 
-print(arrs)
+# for arr in arrs:
+#     print(arr.__dict__)
+
+# print(arrs)
+
+differentInnings('https://www.espncricinfo.com/series/england-in-pakistan-2022-23-1330866/pakistan-vs-england-3rd-test-1330873/ball-by-ball-commentary')
 
 
 
