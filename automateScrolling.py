@@ -4,10 +4,7 @@ from selenium.webdriver.common.by import By
 import time
 
 
-def scroller(path):
-    driver = webdriver.Edge()
-    driver.get(path)
-    time.sleep(1)
+def scroller(driver):
     previousHeight = driver.execute_script('return document.body.scrollHeight;')
     while True:
         driver.execute_script('window.scrollTo(0, document.body.scrollHeight);')
@@ -43,7 +40,7 @@ def scroller(path):
 
 # print(arrs)
 
-differentInnings('https://www.espncricinfo.com/series/england-in-pakistan-2022-23-1330866/pakistan-vs-england-3rd-test-1330873/ball-by-ball-commentary')
+# differentInnings('https://www.espncricinfo.com/series/england-in-pakistan-2022-23-1330866/pakistan-vs-england-3rd-test-1330873/ball-by-ball-commentary')
 
 
 
