@@ -9,7 +9,6 @@ import time
 def findDifferentInnings(path):
     driver = webdriver.Edge()
     driver.get(path)
-    driver.maximize_window()
     wait = WebDriverWait(driver,30)
     try:
         driver.execute_script("window.scrollBy(0,50);")
@@ -28,7 +27,6 @@ def findDifferentInnings(path):
 def specificInnings(path, innings, firstInn=False):
     driver = webdriver.Edge()
     driver.get(path)
-    driver.maximize_window()
     wait = WebDriverWait(driver,30)
     try:
         driver.execute_script("window.scrollBy(0,50);")
@@ -45,7 +43,7 @@ def specificInnings(path, innings, firstInn=False):
     string = "//span[text()='" + innings.text + "']"
     option = wait.until(EC.element_to_be_clickable((By.XPATH, string)))
     option.click()
-    time.sleep(5)
+    time.sleep(3)
     x, y, z = scroller(driver)
     return x, y, z
 
@@ -54,4 +52,4 @@ innings = findDifferentInnings('https://www.espncricinfo.com/series/england-in-p
 
 for i in range(len(innings)):
     inn1, inn2, inn3 = specificInnings('https://www.espncricinfo.com/series/england-in-pakistan-2022-23-1330866/pakistan-vs-england-3rd-test-1330873/ball-by-ball-commentary', innings[i])
-    print(inn1[-1].over)
+    print(len(inn1), len(inn2), len(inn3))
